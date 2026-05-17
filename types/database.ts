@@ -32,6 +32,7 @@ export type Customer = {
   auth_user_id: string | null;
   has_account: boolean;
   purchase_status: string | null;
+  welcome_email_sent_at: string | null;
 };
 
 export type Database = {
@@ -90,6 +91,7 @@ export type Database = {
           auth_user_id?: string | null;
           has_account?: boolean;
           purchase_status?: string | null;
+          welcome_email_sent_at?: string | null;
         };
         Relationships: [];
       };

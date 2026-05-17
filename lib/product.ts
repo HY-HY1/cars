@@ -5,7 +5,7 @@ export async function getProductData() {
 
   return {
     name: product.name,
-    description: product.description,
+    description: product.description ?? "",
     price: product.amountCents,
     currency: product.currency,
 

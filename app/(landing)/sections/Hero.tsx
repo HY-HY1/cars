@@ -21,6 +21,40 @@ export function Hero() {
         />
       </div>
 
+      {/* Floating car — left */}
+      <div
+        className="pointer-events-none absolute hidden lg:block"
+        style={{
+          left: "-120px",
+          top: "50%",
+          transform: "translateY(-50%) rotate(-12deg)",
+        }}
+      >
+        <img
+          src="/120d/after.JPG"
+          alt=""
+          className="w-[340px] opacity-[0.13] rounded-xl cursor-pointer mix-blend-luminosity"
+          style={{ filter: "grayscale(30%)" }}
+        />
+      </div>
+
+      {/* Floating car — right */}
+      <div
+        className="pointer-events-none absolute hidden scale-100 lg:block"
+        style={{
+          right: "-120px",
+          top: "50%",
+          transform: "translateY(-50%) rotate(12deg)",
+        }}
+      >
+        <img
+          src="/120d/before.jpg"
+          alt=""
+          className="w-[340px] opacity-[0.13] rounded-xl mix-blend-luminosity"
+          style={{ filter: "grayscale(30%)", transform: "scaleX(-1)" }}
+        />
+      </div>
+
       <div className="relative z-10 max-w-4xl">
         {/* Badge */}
         <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[rgba(232,255,71,0.2)] bg-[rgba(232,255,71,0.06)] px-4 py-1.5">

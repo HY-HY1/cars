@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "Bash(npx tsc *)",
-      "Bash(npm install *)"
+      "Bash(npm install *)",
+      "Bash(npx next *)",
+      "Bash(npx tailwindcss *)",
+      "Bash(npx eslint *)"
     ]
   }
 }

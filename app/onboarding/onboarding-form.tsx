@@ -117,20 +117,28 @@ type Fields = {
   notes: string;
 };
 
-export function OnboardingForm({ email }: { email: string }) {
+type InitialValues = Partial<Record<keyof Fields, string | null>>;
+
+export function OnboardingForm({
+  email,
+  initialValues,
+}: {
+  email: string;
+  initialValues?: InitialValues;
+}) {
   const router = useRouter();
   const [step, setStep] = useState(0);
   const [direction, setDirection] = useState(1);
   const [fields, setFields] = useState<Fields>({
-    name: "",
-    age_range: "",
-    employment: "",
-    capital_range: "",
-    weekly_hours: "",
-    experience: "",
-    goal: "",
-    target_monthly: "",
-    notes: "",
+    name:           initialValues?.name           ?? "",
+    age_range:      initialValues?.age_range      ?? "",
+    employment:     initialValues?.employment     ?? "",
+    capital_range:  initialValues?.capital_range  ?? "",
+    weekly_hours:   initialValues?.weekly_hours   ?? "",
+    experience:     initialValues?.experience     ?? "",
+    goal:           initialValues?.goal           ?? "",
+    target_monthly: initialValues?.target_monthly ?? "",
+    notes:          initialValues?.notes          ?? "",
   });
 
   const [state, action, pending] = useActionState(saveOnboarding, {});

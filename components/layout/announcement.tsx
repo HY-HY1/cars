@@ -4,7 +4,7 @@ function getTimeUntilMidnight() {
   const now = new Date();
   const midnight = new Date();
   midnight.setHours(24, 0, 0, 0);
-  let diff = Math.max(0, Math.floor((midnight - now) / 1000));
+  let diff = Math.max(0, Math.floor((midnight.getTime() - now.getTime()) / 1000));
   const h = Math.floor(diff / 3600);
   diff %= 3600;
   const m = Math.floor(diff / 60);
@@ -12,9 +12,9 @@ function getTimeUntilMidnight() {
   return { h, m, s };
 }
 
-const pad = (n) => String(n).padStart(2, "0");
+const pad = (n: number) => String(n).padStart(2, "0");
 
-function Segment({ value, label }) {
+function Segment({ value, label }: { value: number; label: string }) {
   return (
     <div className="flex flex-col items-center gap-0.5">
       <span className="min-w-[30px] text-center text-xl font-medium leading-none tabular-nums text-[#e8ff47]">

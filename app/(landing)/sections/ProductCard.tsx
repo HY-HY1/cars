@@ -296,7 +296,8 @@ export default function ProductCard({
         <div className="border-b border-white/[0.06] bg-[#121212] p-8 md:border-b-0 md:border-r">
           <div className="relative overflow-hidden rounded-2xl border border-white/[0.08]">
             <img
-              src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?w=900&q=80"
+            // https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?w=900&q=80
+              src="/polo4.jpg" 
               alt={product.name}
               className="aspect-[4/5] h-full w-full object-cover"
             />

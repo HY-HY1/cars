@@ -36,7 +36,7 @@ async function activateCustomerPurchase(params: {
     throw new Error(`Customer not found: ${customerId}`);
   }
 
-  const alreadySentEmail = Boolean((customer as Record<string, unknown>).welcome_email_sent_at);
+  const alreadySentEmail = Boolean(customer.welcome_email_sent_at);
 
   // Always update activation fields — idempotent
   const { error: updateError } = await admin
@@ -103,7 +103,7 @@ export async function handlePaymentIntentSucceeded(
     const admin = supabaseAdmin();
     await admin
       .from("customers")
-      .update({ welcome_email_sent_at: new Date().toISOString() } as Record<string, unknown>)
+      .update({ welcome_email_sent_at: new Date().toISOString() })
       .eq("email", normalizeEmail(emailAddress));
 
     console.log("[webhook] welcome emails sent to", emailAddress);

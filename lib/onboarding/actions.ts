@@ -32,7 +32,7 @@ export async function saveOnboarding(
     .eq("email", email)
     .maybeSingle();
 
-  const { error } = await admin.from("onboarding").insert({
+  const payload = {
     email,
     customer_id:    customer?.id ?? null,
     completed_at:   new Date().toISOString(),
@@ -45,7 +45,18 @@ export async function saveOnboarding(
     goal:           String(formData.get("goal") ?? ""),
     target_monthly: String(formData.get("target_monthly") ?? ""),
     notes:          String(formData.get("notes") ?? ""),
-  });
+  };
+
+  // Check for an existing row — update it rather than inserting a duplicate
+  const { data: existing } = await admin
+    .from("onboarding")
+    .select("id")
+    .eq("email", email)
+    .maybeSingle();
+
+  const { error } = existing
+    ? await admin.from("onboarding").update(payload).eq("id", existing.id)
+    : await admin.from("onboarding").insert(payload);
 
   if (error) {
     console.error("[onboarding] save failed", error);

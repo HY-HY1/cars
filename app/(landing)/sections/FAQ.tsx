@@ -77,7 +77,7 @@ export function FAQSection() {
       <p className="text-center text-muted-foreground mb-10 text-sm">
         Still have questions? Email us at support@yoursite.com
       </p>
-      <Accordion type="multiple" defaultValue={["beginners"]} className="max-w-2xl mx-auto">
+      <Accordion multiple defaultValue={["beginners"]} className="max-w-2xl mx-auto">
         {faqItems.map((item: FAQItem) => (
           <AccordionItem key={item.value} value={item.value}>
             <AccordionTrigger className="text-left">
