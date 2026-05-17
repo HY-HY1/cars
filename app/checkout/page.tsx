@@ -1,4 +1,5 @@
-import { CheckoutClient } from "@/components/checkout/checkout-client";
+import { CheckoutForm } from "@/components/CheckoutForm";
+import { CheckoutSplash } from "@/components/checkout/checkout-splash";
 import {
   Card,
   CardContent,
@@ -7,8 +8,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { getBaseUrl } from "@/lib/env";
 import { formatPrice, getCheckoutProduct } from "@/lib/stripe-product";
 import { getStripePublishableKey } from "@/lib/stripe";
+import ProductCard, { OrderSummary } from "../(landing)/sections/ProductCard";
 
 export async function generateMetadata() {
   const product = await getCheckoutProduct();
@@ -21,15 +24,20 @@ export async function generateMetadata() {
 export default async function CheckoutPage() {
   const product = await getCheckoutProduct();
   const publishableKey = getStripePublishableKey();
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3000";
-  const returnUrl = `${baseUrl}/checkout/success`;
+  const returnUrl = `${getBaseUrl()}/checkout/success?payment_intent={PAYMENT_INTENT_ID}`;
 
   return (
-    <div className="min-h-full bg-zinc-950 text-zinc-50">
+    <div className="min-h-full bg-zinc-950 text-zinc-50 max-w-5xl m-auto">
+      <CheckoutSplash />
+      <div>
+        <OrderSummary savings={100} comparePrice="100" price="19.99"/>
+      </div>
+
       <div className="mx-auto flex w-full max-w-5xl flex-col gap-10 px-6 py-12 lg:flex-row lg:gap-16 lg:py-16">
+        
         <aside className="lg:w-[42%] lg:pt-2">
           <p className="text-xs font-medium uppercase tracking-[0.2em] text-zinc-500">
-            Secure checkout
+            Guest checkout
           </p>
           <h1 className="mt-3 text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
             {product.name}
@@ -59,22 +67,17 @@ export default async function CheckoutPage() {
               </dd>
             </div>
           </dl>
-
-          <p className="mt-6 text-xs leading-relaxed text-zinc-500">
-            Payments are processed securely by Stripe. You will receive your purchase
-            confirmation by email.
-          </p>
         </aside>
 
         <Card className="flex-1 border-zinc-800 bg-zinc-950">
           <CardHeader>
-            <CardTitle className="text-xl">Your details</CardTitle>
+            <CardTitle className="text-xl">Checkout</CardTitle>
             <CardDescription>
-              Enter your information, then complete payment with Stripe.
+              Enter your email, then pay with card or wallet — all on this page.
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <CheckoutClient publishableKey={publishableKey} returnUrl={returnUrl} />
+            <CheckoutForm publishableKey={publishableKey} returnUrl={returnUrl} />
           </CardContent>
         </Card>
       </div>

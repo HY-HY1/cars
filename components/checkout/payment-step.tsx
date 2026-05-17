@@ -2,7 +2,6 @@
 
 import {
   AddressElement,
-  LinkAuthenticationElement,
   PaymentElement,
   useElements,
   useStripe,
@@ -14,13 +13,12 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 
 type PaymentStepProps = {
-  returnUrl: string;
-  name: string;
   email: string;
+  returnUrl: string;
   onBack: () => void;
 };
 
-export function PaymentStep({ returnUrl, name, email, onBack }: PaymentStepProps) {
+export function PaymentStep({ email, returnUrl, onBack }: PaymentStepProps) {
   const stripe = useStripe();
   const elements = useElements();
   const [message, setMessage] = useState<string | null>(null);
@@ -37,11 +35,9 @@ export function PaymentStep({ returnUrl, name, email, onBack }: PaymentStepProps
       elements,
       confirmParams: {
         return_url: returnUrl,
+        receipt_email: email,
         payment_method_data: {
-          billing_details: {
-            name,
-            email,
-          },
+          billing_details: { email },
         },
       },
     });
@@ -58,10 +54,6 @@ export function PaymentStep({ returnUrl, name, email, onBack }: PaymentStepProps
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      <LinkAuthenticationElement options={{ defaultValues: { email } }} />
-
-      <Separator />
-
       <section className="space-y-3">
         <h3 className="text-sm font-medium text-zinc-300">Payment method</h3>
         <PaymentElement
@@ -69,7 +61,6 @@ export function PaymentStep({ returnUrl, name, email, onBack }: PaymentStepProps
             layout: "tabs",
             fields: {
               billingDetails: {
-                name: "never",
                 email: "never",
               },
             },
@@ -81,12 +72,7 @@ export function PaymentStep({ returnUrl, name, email, onBack }: PaymentStepProps
 
       <section className="space-y-3">
         <h3 className="text-sm font-medium text-zinc-300">Billing address</h3>
-        <AddressElement
-          options={{
-            mode: "billing",
-            defaultValues: { name },
-          }}
-        />
+        <AddressElement options={{ mode: "billing" }} />
       </section>
 
       {message ? (
@@ -118,7 +104,7 @@ export function PaymentStep({ returnUrl, name, email, onBack }: PaymentStepProps
         disabled={isLoading}
         onClick={onBack}
       >
-        Back to details
+        Change email
       </Button>
     </form>
   );
