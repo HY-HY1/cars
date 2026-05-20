@@ -39,7 +39,7 @@ export async function sendLoginOtp(
     return { error: error.message };
   }
 
-  return { success: "Check your email for a one-time login code." };
+  return { success: "Sign-in link sent." };
 }
 
 export async function verifyLoginOtp(

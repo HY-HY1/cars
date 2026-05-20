@@ -1,6 +1,7 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import Link from "next/link";
 
+import { offer, discountLabel } from "@/lib/offer";
 import { getCheckoutProduct, formatPrice } from "@/lib/stripe-product";
 
 export async function generateMetadata() {
@@ -101,8 +102,8 @@ const faqs = [
 export default async function ProductPage() {
   const product = await getCheckoutProduct();
   const price = formatPrice(product.amountCents, product.currency);
-  const comparePrice = formatPrice(19700, product.currency);
-  const savings = Math.round((19700 - product.amountCents) / 100);
+  const comparePrice = formatPrice(offer.regularPricePence, product.currency);
+  const savings = Math.round((offer.regularPricePence - product.amountCents) / 100);
 
   return (
     <div
@@ -110,7 +111,7 @@ export default async function ProductPage() {
       style={{ fontFamily: "'DM Sans', sans-serif" }}
     >
       {/* ── Breadcrumb ──────────────────────────────────────── */}
-      <div className="border-b border-white/[0.06] bg-[#0d0d0d]">
+      <div className="border-b border-white/6 bg-[#0d0d0d]">
         <div className="mx-auto flex max-w-7xl items-center gap-2 px-6 py-3 text-xs text-white/35">
           <Link href="/" className="transition hover:text-white/70">Home</Link>
           <span>/</span>
@@ -125,10 +126,10 @@ export default async function ProductPage() {
         <div className="min-w-0 flex-1 space-y-12">
 
           {/* Product header */}
-          <div className="border-b border-white/[0.06] pb-10">
+          <div className="border-b border-white/6 pb-10">
             <div className="mb-4 flex flex-wrap items-center gap-2">
               <span className="rounded-full bg-[rgba(232,255,71,0.1)] px-3 py-1 text-xs font-bold tracking-wide text-[#e8ff47]">
-                60% OFF
+                {discountLabel}
               </span>
               <span className="text-xs text-white/35">Limited time · One-time payment</span>
             </div>
@@ -161,11 +162,11 @@ export default async function ProductPage() {
             <h2 className="font-syne mb-6 text-xl font-bold text-white">
               What&apos;s included
             </h2>
-            <div className="divide-y divide-white/[0.05] rounded-2xl border border-white/[0.07] overflow-hidden">
+            <div className="divide-y divide-white/5 rounded-2xl border border-white/7 overflow-hidden">
               {includes.map((item) => (
                 <div
                   key={item.title}
-                  className="flex gap-4 bg-white/[0.02] px-5 py-5 transition hover:bg-white/[0.035]"
+                  className="flex gap-4 bg-white/2 px-5 py-5 transition hover:bg-white/3.5"
                 >
                   <span className="mt-0.5 shrink-0 text-xl">{item.icon}</span>
                   <div className="min-w-0">
@@ -195,7 +196,7 @@ export default async function ProductPage() {
                       {i + 1}
                     </div>
                     {i < steps.length - 1 && (
-                      <div className="mt-2 w-px flex-1 bg-white/[0.07]" />
+                      <div className="mt-2 w-px flex-1 bg-white/7" />
                     )}
                   </div>
                   <div className="pb-6">
@@ -214,7 +215,7 @@ export default async function ProductPage() {
             </h2>
             <div className="space-y-3">
               {faqs.map((item) => (
-                <div key={item.q} className="rounded-xl border border-white/[0.07] bg-white/[0.02] px-5 py-4">
+                <div key={item.q} className="rounded-xl border border-white/7 bg-white/2 px-5 py-4">
                   <h3 className="mb-1.5 text-sm font-semibold text-white">{item.q}</h3>
                   <p className="text-sm leading-relaxed text-white/45">{item.a}</p>
                 </div>
@@ -237,7 +238,7 @@ export default async function ProductPage() {
 
         {/* ── RIGHT: sticky purchase card ───────────────────── */}
         <div className="mt-10 hidden shrink-0 lg:mt-0 lg:block lg:w-80 xl:w-96">
-          <div className="sticky top-6 overflow-hidden rounded-2xl border border-white/[0.09] bg-[#111]">
+          <div className="sticky top-6 overflow-hidden rounded-2xl border border-white/9 bg-[#111]">
 
             {/* Product image strip */}
             <div className="relative h-44 overflow-hidden">
@@ -250,7 +251,7 @@ export default async function ProductPage() {
               <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-[#111]/40 to-transparent" />
               <div className="absolute bottom-4 left-4">
                 <span className="rounded-lg bg-[#e8ff47] px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-black">
-                  60% OFF
+                  {discountLabel}
                 </span>
               </div>
             </div>
@@ -289,7 +290,7 @@ export default async function ProductPage() {
               </div>
 
               {/* Mini includes */}
-              <div className="mt-6 border-t border-white/[0.06] pt-5">
+              <div className="mt-6 border-t border-white/6 pt-5">
                 <p className="mb-3 text-[11px] font-semibold uppercase tracking-widest text-white/30">
                   What you get
                 </p>
@@ -304,12 +305,12 @@ export default async function ProductPage() {
               </div>
 
               {/* Stats */}
-              <div className="mt-5 grid grid-cols-2 gap-2 border-t border-white/[0.06] pt-5">
+              <div className="mt-5 grid grid-cols-2 gap-2 border-t border-white/6 pt-5">
                 {[
                   { value: "£800", label: "Avg. profit/flip" },
                   { value: "29+", label: "Cars resold" },
                 ].map((s) => (
-                  <div key={s.label} className="rounded-lg bg-white/[0.03] p-3 text-center">
+                  <div key={s.label} className="rounded-lg bg-white/3 p-3 text-center">
                     <p className="font-syne text-lg font-bold text-[#e8ff47]">{s.value}</p>
                     <p className="text-[10px] text-white/35">{s.label}</p>
                   </div>
@@ -321,7 +322,7 @@ export default async function ProductPage() {
       </div>
 
       {/* ── Bottom CTA bar ──────────────────────────────────── */}
-      <div className="border-t border-white/[0.06] bg-[#0d0d0d] px-6 py-10 text-center">
+      <div className="border-t border-white/6 bg-[#0d0d0d] px-6 py-10 text-center">
         <p className="mb-1 text-xs text-white/35 uppercase tracking-widest font-semibold">One-time payment · No subscription</p>
         <div className="mb-5 mt-4 flex items-end justify-center gap-3">
           <span className="text-base text-white/25 line-through">{comparePrice}</span>
@@ -334,7 +335,7 @@ export default async function ProductPage() {
           href="/checkout"
           className="inline-block rounded-xl bg-[#e8ff47] px-12 py-4 text-base font-bold text-[#0a0a0a] shadow-[0_0_40px_rgba(232,255,71,0.2)] transition hover:brightness-110 hover:shadow-[0_0_60px_rgba(232,255,71,0.35)] active:scale-95"
         >
-          Get Instant Access — 60% Off Today
+          Get Instant Access — {offer.discountPct}% Off Today
         </Link>
         <p className="mt-3 text-xs text-white/30">🔒 Secure checkout · ⚡ Instant access · ↺ 30-day guarantee · 📦 Lifetime updates</p>
       </div>

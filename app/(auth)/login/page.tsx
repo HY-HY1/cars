@@ -13,6 +13,10 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
   const { email, next } = await searchParams;
 
   return (
-    <LoginForm defaultEmail={email ?? ""} nextPath={next ?? "/dashboard"} />
+    <div className="min-h-[40vh] ">
+      <div className="h- mt-10">
+        <LoginForm defaultEmail={email ?? ""} nextPath={next ?? "/dashboard"} />
+      </div>
+    </div>
   );
 }

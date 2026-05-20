@@ -1,3 +1,5 @@
+import { offer } from "@/lib/offer";
+
 const reassurance = [
   "🔒 Secure checkout",
   "⚡ Instant access",
@@ -24,14 +26,14 @@ export function CTASection() {
         </h2>
 
         <p className="mx-auto mb-10 max-w-lg text-base leading-relaxed text-white/50">
-          Join the students already making £800+ per flip. Get the complete system today — 60% off the regular price.
+          Join the students already making £800+ per flip. Get the complete system today — {offer.discountPct}% off the regular price.
         </p>
 
         <a
           href="/product"
           className="inline-block rounded-xl bg-[#e8ff47] px-10 py-4 text-base font-bold text-[#0a0a0a] shadow-[0_0_40px_rgba(232,255,71,0.25)] transition-all hover:brightness-110 hover:shadow-[0_0_60px_rgba(232,255,71,0.4)] active:scale-95"
         >
-          Get Instant Access — 60% Off Today
+          Get Instant Access — {offer.discountPct}% Off Today
         </a>
 
         <div className="mt-6 flex flex-wrap items-center justify-center gap-5 text-xs text-white/30">

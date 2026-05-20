@@ -1,3 +1,12 @@
+export type ContactEnquiry = {
+  id: string;
+  name: string;
+  email: string;
+  subject: string | null;
+  message: string;
+  created_at: string;
+};
+
 export type Profile = {
   id: string;
   email: string;
@@ -38,6 +47,19 @@ export type Customer = {
 export type Database = {
   public: {
     Tables: {
+      contact_enquiries: {
+        Row: ContactEnquiry;
+        Insert: {
+          id?: string;
+          name: string;
+          email: string;
+          subject?: string | null;
+          message: string;
+          created_at?: string;
+        };
+        Update: Partial<Omit<ContactEnquiry, "id" | "created_at">>;
+        Relationships: [];
+      };
       profiles: {
         Row: Profile;
         Insert: {

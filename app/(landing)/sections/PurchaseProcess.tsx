@@ -1,4 +1,4 @@
-import HeadingBadge from "@/components/common";
+﻿import HeadingBadge from "@/components/common";
 
 const steps = [
   {
@@ -93,7 +93,7 @@ export function PurchaseProcess() {
                     {step.icon}
                   </div>
                   {i < steps.length - 1 && (
-                    <div className="my-1 w-px flex-1 bg-white/[0.06]" />
+                    <div className="my-1 w-px flex-1 bg-white/6" />
                   )}
                 </div>
 
@@ -101,7 +101,7 @@ export function PurchaseProcess() {
                 <div className={`pb-8 ${i === steps.length - 1 ? "pb-0" : ""}`}>
                   <div className="flex flex-wrap items-center gap-2 mb-1">
                     <p className="text-sm font-semibold text-white">{step.title}</p>
-                    <span className="rounded bg-white/[0.05] px-2 py-0.5 text-[10px] text-white/30">
+                    <span className="rounded bg-white/5 px-2 py-0.5 text-[10px] text-white/30">
                       {step.detail}
                     </span>
                   </div>
@@ -120,7 +120,7 @@ export function PurchaseProcess() {
             {faqs.map((item) => (
               <div
                 key={item.q}
-                className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5"
+                className="rounded-2xl border border-white/7 bg-white/3 p-5"
               >
                 <p className="mb-2 text-sm font-semibold text-white/90">{item.q}</p>
                 <p className="text-xs leading-relaxed text-white/45">{item.a}</p>

@@ -18,7 +18,7 @@ async function activateCustomerPurchase(params: {
   const admin = supabaseAdmin();
   const { customerId, stripeCustomerId, email } = params;
 
-  let customer = await getCustomerById(customerId);
+  const customer = await getCustomerById(customerId);
 
   // No customer row yet — create one (brand new guest who never touched the site)
   if (!customer && email) {

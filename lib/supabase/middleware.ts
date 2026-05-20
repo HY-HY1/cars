@@ -2,6 +2,7 @@ import { createServerClient } from "@supabase/ssr";
 import { type NextRequest, NextResponse } from "next/server";
 
 import { getSupabaseAnonKey, getSupabaseUrl } from "@/lib/env";
+import { isDevBypass } from "@/lib/dev";
 
 const PROTECTED_PREFIXES = ["/dashboard", "/account"];
 const AUTH_PAGES = ["/login"];
@@ -57,7 +58,7 @@ export async function updateSession(request: NextRequest) {
 
   const { pathname } = request.nextUrl;
 
-  if (isProtected(pathname) && !user) {
+  if (isProtected(pathname) && !user && !isDevBypass()) {
     const loginUrl = request.nextUrl.clone();
     loginUrl.pathname = "/login";
     loginUrl.searchParams.set("next", pathname);

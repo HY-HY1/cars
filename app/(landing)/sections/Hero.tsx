@@ -1,5 +1,8 @@
 "use client"
 
+import Image from "next/image"
+
+import { offer } from "@/lib/offer"
 import { StatCard } from "./statCard"
 import { FlipCard } from "./flipCard"
 import { flips, reassuranceItems } from "./data"
@@ -30,9 +33,11 @@ export function Hero() {
           transform: "translateY(-50%) rotate(-12deg)",
         }}
       >
-        <img
+        <Image
           src="/120d/after.JPG"
           alt=""
+          width={340}
+          height={255}
           className="w-[340px] opacity-[0.13] rounded-xl cursor-pointer mix-blend-luminosity"
           style={{ filter: "grayscale(30%)" }}
         />
@@ -47,9 +52,11 @@ export function Hero() {
           transform: "translateY(-50%) rotate(12deg)",
         }}
       >
-        <img
+        <Image
           src="/120d/before.jpg"
           alt=""
+          width={340}
+          height={255}
           className="w-[340px] opacity-[0.13] rounded-xl mix-blend-luminosity"
           style={{ filter: "grayscale(30%)", transform: "scaleX(-1)" }}
         />
@@ -98,7 +105,7 @@ export function Hero() {
         {/* CTA */}
         <div className="mb-14 flex flex-col items-center gap-3 sm:flex-col sm:justify-center">
           <button className="group relative overflow-hidden rounded-xl bg-[#e8ff47] px-8 py-4 text-base font-bold text-[#0a0a0a] shadow-[0_0_40px_rgba(232,255,71,0.25)] transition-all hover:brightness-110 hover:shadow-[0_0_60px_rgba(232,255,71,0.4)] active:scale-95 border-none cursor-pointer">
-            Start Flipping Cars — 60% Off Today
+            Start Flipping Cars — {offer.discountPct}% Off Today
           </button>
           <p className="text-xs text-white/35">
             🔒 Secure checkout · Instant access · 30-day guarantee

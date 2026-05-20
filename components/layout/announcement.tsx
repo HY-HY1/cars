@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
+
+import { offer } from "@/lib/offer";
 
 function getTimeUntilMidnight() {
   const now = new Date();
@@ -39,7 +41,7 @@ export default function AnnouncementBar() {
   if (!visible) return null;
 
   return (
-    <div className="relative flex flex-wrap items-center justify-center gap-5 border-b border-white/[0.06] bg-[#0a0a0a] px-12 py-2.5">
+    <div className="relative flex flex-wrap items-center justify-center gap-5 border-b border-white/6 bg-[#0a0a0a] px-12 py-2.5">
 
       {/* Message */}
       <div className="flex items-center gap-2.5">
@@ -47,7 +49,7 @@ export default function AnnouncementBar() {
           Sale
         </span>
         <span className="text-[15px] font-medium text-white/90">
-          60% off — ends at midnight
+          {offer.discountPct}% off — ends at midnight
         </span>
       </div>
 

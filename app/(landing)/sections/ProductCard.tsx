@@ -1,5 +1,6 @@
-"use client"
+﻿"use client"
 
+import Image from "next/image"
 import { useState } from "react"
 
 import { CheckoutForm } from "@/components/CheckoutForm"
@@ -79,7 +80,7 @@ function FeatureCard({
   tag,
 }: (typeof includes)[number]) {
   return (
-    <div className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-5 transition-all hover:border-[rgba(232,255,71,0.18)] hover:bg-[rgba(232,255,71,0.04)]">
+    <div className="rounded-2xl border border-white/6 bg-white/3 p-5 transition-all hover:border-[rgba(232,255,71,0.18)] hover:bg-[rgba(232,255,71,0.04)]">
       <div
         className={`mb-4 flex h-10 w-10 items-center justify-center rounded-xl text-lg ${iconBg}`}
       >
@@ -116,7 +117,7 @@ export function OrderSummary({
   savings,
 }: OrderSummaryProps) {
   return (
-    <div className="mb-6 rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
+    <div className="mb-6 rounded-2xl border border-white/7 bg-white/3 p-5">
       <p className="mb-3 text-[11px] font-semibold uppercase tracking-widest text-white/30">
         Order summary
       </p>
@@ -144,7 +145,7 @@ export function OrderSummary({
       <div className="mt-3 flex items-center gap-2 rounded-xl border border-[rgba(232,255,71,0.15)] bg-[rgba(232,255,71,0.06)] px-3 py-2">
         <span className="text-[#e8ff47]">🎉</span>
         <span className="text-xs text-[#e8ff47]">
-          You're saving <strong>£{savings}</strong> today
+          You&apos;re saving <strong>£{savings}</strong> today
         </span>
       </div>
     </div>
@@ -215,7 +216,7 @@ function ProductDetails({
         ))}
       </div>
 
-      <div className="border-t border-white/[0.06] pt-6">
+      <div className="border-t border-white/6 pt-6">
         <div className="mb-5 flex items-end gap-3">
           <span className="text-lg text-white/20 line-through">
             {formattedComparePrice}
@@ -290,16 +291,16 @@ export default function ProductCard({
       </div>
 
       {/* Main card */}
-      <div className="mx-auto grid max-w-6xl overflow-hidden rounded-3xl border border-white/[0.08] bg-[#111] md:grid-cols-[1fr_2fr]">
+      <div className="mx-auto grid max-w-6xl overflow-hidden rounded-3xl border border-white/8 bg-[#111] md:grid-cols-[1fr_2fr]">
 
         {/* Left */}
-        <div className="border-b border-white/[0.06] bg-[#121212] p-8 md:border-b-0 md:border-r">
-          <div className="relative overflow-hidden rounded-2xl border border-white/[0.08]">
-            <img
-            // https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?w=900&q=80
-              src="/polo4.jpg" 
+        <div className="border-b border-white/6 bg-[#121212] p-8 md:border-b-0 md:border-r">
+          <div className="relative aspect-4/5 overflow-hidden rounded-2xl border border-white/8">
+            <Image
+              src="/polo4.jpg"
               alt={product.name}
-              className="aspect-[4/5] h-full w-full object-cover"
+              fill
+              className="object-cover"
             />
 
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -326,7 +327,7 @@ export default function ProductCard({
             ].map((stat) => (
               <div
                 key={stat.label}
-                className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-4"
+                className="rounded-xl border border-white/6 bg-white/3 p-4"
               >
                 <p className="text-2xl font-bold text-[#e8ff47]">
                   {stat.value}

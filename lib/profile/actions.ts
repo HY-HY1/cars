@@ -1,6 +1,7 @@
 "use server";
 
 import { normalizeEmail } from "@/lib/customers";
+import { getBaseUrl } from "@/lib/env";
 import { createClient } from "@/lib/supabase/server";
 import { supabaseAdmin } from "@/lib/supabaseAdmin";
 
@@ -41,7 +42,7 @@ export async function requestPasswordReset(): Promise<ProfileState> {
   if (!user?.email) return { error: "No email address on this account." };
 
   const { error } = await supabase.auth.resetPasswordForEmail(user.email, {
-    redirectTo: `${process.env.NEXT_PUBLIC_BASE_URL}/auth/reset-password`,
+    redirectTo: `${getBaseUrl()}/auth/reset-password`,
   });
 
   if (error) return { error: error.message };

@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 
 import { requireUser } from "@/lib/auth/require-user";
 import { resolveAccess } from "@/lib/auth/resolve-access";
@@ -30,7 +30,7 @@ export default async function SettingsPage() {
       </div>
 
       {/* Account info */}
-      <section className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
+      <section className="rounded-2xl border border-white/7 bg-white/3 p-5">
         <h2 className="mb-4 text-xs font-semibold uppercase tracking-widest text-white/30">
           Account details
         </h2>
@@ -47,7 +47,7 @@ export default async function SettingsPage() {
       </section>
 
       {/* Purchase status */}
-      <section className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
+      <section className="rounded-2xl border border-white/7 bg-white/3 p-5">
         <h2 className="mb-4 text-xs font-semibold uppercase tracking-widest text-white/30">
           Purchase
         </h2>
@@ -78,7 +78,7 @@ export default async function SettingsPage() {
         </div>
 
         {!hasAccess && (
-          <div className="mt-4 border-t border-white/[0.06] pt-4">
+          <div className="mt-4 border-t border-white/6 pt-4">
             <Link
               href="/product"
               className="inline-block rounded-xl bg-[#e8ff47] px-5 py-2 text-sm font-bold text-[#0a0a0a] transition hover:brightness-110"
@@ -90,7 +90,7 @@ export default async function SettingsPage() {
       </section>
 
       {/* Profile / Onboarding */}
-      <section className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
+      <section className="rounded-2xl border border-white/7 bg-white/3 p-5">
         <h2 className="mb-4 text-xs font-semibold uppercase tracking-widest text-white/30">
           Your profile
         </h2>
@@ -116,7 +116,7 @@ export default async function SettingsPage() {
             />
           )}
         </div>
-        <div className="mt-4 border-t border-white/[0.06] pt-4">
+        <div className="mt-4 border-t border-white/6 pt-4">
           <Link
             href={`/onboarding?email=${encodeURIComponent(email)}`}
             className="text-sm font-medium text-[#e8ff47] hover:underline underline-offset-2"
@@ -127,14 +127,14 @@ export default async function SettingsPage() {
       </section>
 
       {/* Danger zone */}
-      <section className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
+      <section className="rounded-2xl border border-white/7 bg-white/3 p-5">
         <h2 className="mb-4 text-xs font-semibold uppercase tracking-widest text-white/30">
           Session
         </h2>
         <form action={signOut}>
           <button
             type="submit"
-            className="rounded-xl border border-white/[0.08] px-5 py-2 text-sm font-medium text-white/50 transition hover:border-white/20 hover:text-white/80"
+            className="rounded-xl border border-white/8 px-5 py-2 text-sm font-medium text-white/50 transition hover:border-white/20 hover:text-white/80"
           >
             Log out of this account
           </button>

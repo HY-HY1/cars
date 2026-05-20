@@ -1,5 +1,9 @@
-import { MobileNav } from "@/components/dashboard/mobile-nav";
-import { Sidebar } from "@/components/dashboard/sidebar";
+import { AppSidebar } from "@/components/dashboard/sidebar";
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
 import { requireUser } from "@/lib/auth/require-user";
 import { normalizeEmail } from "@/lib/customers";
 import { supabaseAdmin } from "@/lib/supabaseAdmin";
@@ -7,7 +11,6 @@ import { supabaseAdmin } from "@/lib/supabaseAdmin";
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
   const { user } = await requireUser("/dashboard");
 
-  // Get name from onboarding table (only source of full name in actual schema)
   const admin = supabaseAdmin();
   const { data: onboarding } = await admin
     .from("onboarding")
@@ -17,14 +20,14 @@ export default async function DashboardLayout({ children }: { children: React.Re
     .maybeSingle();
 
   return (
-    <div className="flex h-screen overflow-hidden bg-[#0a0a0a] text-white">
-      <div className="hidden md:flex md:shrink-0">
-        <Sidebar email={user.email ?? ""} name={onboarding?.name ?? null} />
-      </div>
-      <div className="flex flex-1 flex-col overflow-hidden">
-        <MobileNav />
-        <main className="flex-1 overflow-y-auto">{children}</main>
-      </div>
-    </div>
+    <SidebarProvider>
+      <AppSidebar email={user.email ?? ""} name={onboarding?.name ?? null} />
+      <SidebarInset>
+        <header className="flex h-12 shrink-0 items-center gap-2 border-b border-sidebar-border px-4 md:hidden">
+          <SidebarTrigger className="-ml-1" />
+        </header>
+        {children}
+      </SidebarInset>
+    </SidebarProvider>
   );
 }

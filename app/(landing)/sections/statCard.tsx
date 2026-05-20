@@ -1,4 +1,4 @@
-type StatCardProps = {
+﻿type StatCardProps = {
   value: string
   label: string
   sub?: string
@@ -6,7 +6,7 @@ type StatCardProps = {
 
 export function StatCard({ value, label, sub }: StatCardProps) {
   return (
-    <div className="flex flex-col gap-1 rounded-2xl border border-white/[0.07] bg-white/[0.03] px-6 py-5 backdrop-blur-sm">
+    <div className="flex flex-col gap-1 rounded-2xl border border-white/7 bg-white/3 px-6 py-5 backdrop-blur-sm">
       <span className="text-3xl font-bold tracking-tight text-white">
         {value}
       </span>

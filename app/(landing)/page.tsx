@@ -18,6 +18,7 @@ export default async function Page() {
     <div>
       <Hero />
       <TestimonialsSection />
+      {/* <TikTokSection /> */}
       <CaseStudySection />
       <WhoIsItFor />
       <div id="pricing">

@@ -25,6 +25,7 @@ export function Confetti() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     setPieces(
       Array.from({ length: 90 }, (_, i) => ({

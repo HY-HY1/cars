@@ -1,4 +1,4 @@
-import HeadingBadge from "@/components/common";
+﻿import HeadingBadge from "@/components/common";
 
 const fits = [
   {
@@ -63,7 +63,7 @@ export function WhoIsItFor() {
             {fits.map((item) => (
               <div
                 key={item.title}
-                className="flex gap-4 rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5 transition hover:border-white/[0.12]"
+                className="flex gap-4 rounded-2xl border border-white/7 bg-white/3 p-5 transition hover:border-white/12"
               >
                 <span className="mt-0.5 shrink-0 text-xl leading-none">{item.icon}</span>
                 <div>
@@ -75,7 +75,7 @@ export function WhoIsItFor() {
           </div>
 
           {/* This is NOT for you */}
-          <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-6">
+          <div className="rounded-2xl border border-white/7 bg-white/3 p-6">
             <p className="mb-5 text-xs font-semibold uppercase tracking-[0.18em] text-white/30">
               Not a good fit if…
             </p>
@@ -90,7 +90,7 @@ export function WhoIsItFor() {
               ))}
             </ul>
 
-            <div className="mt-8 border-t border-white/[0.06] pt-6">
+            <div className="mt-8 border-t border-white/6 pt-6">
               <p className="text-xs leading-relaxed text-white/30">
                 If you&apos;re willing to follow a process, put in the hours, and treat it like a
                 real business — even part-time — this works.

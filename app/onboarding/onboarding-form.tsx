@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/navigation";
@@ -15,7 +15,7 @@ function Label({ children }: { children: React.ReactNode }) {
 }
 
 function OptionGrid({
-  name,
+  name: _name,
   value,
   onChange,
   options,
@@ -39,7 +39,7 @@ function OptionGrid({
             className={`rounded-xl border px-4 py-3 text-left text-sm transition-all ${
               selected
                 ? "border-[#e8ff47] bg-[rgba(232,255,71,0.08)] text-white"
-                : "border-white/[0.08] bg-white/[0.03] text-white/60 hover:border-white/20 hover:text-white/80"
+                : "border-white/8 bg-white/3 text-white/60 hover:border-white/20 hover:text-white/80"
             }`}
           >
             <span className="font-medium">{o.label}</span>
@@ -71,7 +71,7 @@ function TextInput({
       value={value}
       onChange={(e) => onChange(e.target.value)}
       placeholder={placeholder}
-      className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-white/25 outline-none transition focus:border-[#e8ff47]/50 focus:bg-white/[0.06]"
+      className="w-full rounded-xl border border-white/8 bg-white/4 px-4 py-3 text-sm text-white placeholder-white/25 outline-none transition focus:border-[#e8ff47]/50 focus:bg-white/6"
     />
   );
 }
@@ -94,7 +94,7 @@ function Textarea({
       onChange={(e) => onChange(e.target.value)}
       placeholder={placeholder}
       rows={3}
-      className="w-full resize-none rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-white/25 outline-none transition focus:border-[#e8ff47]/50 focus:bg-white/[0.06]"
+      className="w-full resize-none rounded-xl border border-white/8 bg-white/4 px-4 py-3 text-sm text-white placeholder-white/25 outline-none transition focus:border-[#e8ff47]/50 focus:bg-white/6"
     />
   );
 }
@@ -345,14 +345,14 @@ export function OnboardingForm({
             <div
               key={i}
               className={`h-1 flex-1 rounded-full transition-all duration-300 ${
-                i <= step ? "bg-[#e8ff47]" : "bg-white/[0.08]"
+                i <= step ? "bg-[#e8ff47]" : "bg-white/8"
               }`}
             />
           ))}
         </div>
 
         {/* Card */}
-        <div className="overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.03]">
+        <div className="overflow-hidden rounded-2xl border border-white/7 bg-white/3">
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={step}
@@ -367,7 +367,7 @@ export function OnboardingForm({
           </AnimatePresence>
 
           {/* Footer */}
-          <div className="flex items-center justify-between border-t border-white/[0.06] px-6 py-4 md:px-8">
+          <div className="flex items-center justify-between border-t border-white/6 px-6 py-4 md:px-8">
             {step > 0 ? (
               <button
                 type="button"

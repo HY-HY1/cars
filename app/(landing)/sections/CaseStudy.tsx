@@ -1,5 +1,6 @@
-"use client";
+﻿"use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -85,9 +86,11 @@ function Lightbox({
             className="max-h-[88vh] w-auto rounded-xl"
           />
         ) : (
-          <img
+          <Image
             src={item.src}
             alt={item.label}
+            width={1200}
+            height={900}
             className="max-h-[88vh] max-w-[88vw] rounded-xl object-contain"
           />
         )}
@@ -136,7 +139,7 @@ export function CaseStudySection() {
               {/* Video */}
               <button
                 onClick={() => setLightboxItem(heroVideo)}
-                className="group relative overflow-hidden rounded-2xl border border-white/[0.07] bg-[#111]"
+                className="group relative overflow-hidden rounded-2xl border border-white/7 bg-[#111]"
                 style={{ aspectRatio: "9 / 16", flex: "0 0 auto", width: "55%" }}
               >
                 <video
@@ -167,12 +170,13 @@ export function CaseStudySection() {
                   <button
                     key={item.src}
                     onClick={() => setLightboxItem(item)}
-                    className="group relative flex-1 overflow-hidden rounded-xl border border-white/[0.07] bg-[#111]"
+                    className="group relative flex-1 overflow-hidden rounded-xl border border-white/7 bg-[#111]"
                   >
-                    <img
+                    <Image
                       src={item.src}
                       alt={item.label}
-                      className="h-full w-full object-cover transition group-hover:scale-105"
+                      fill
+                      className="object-cover transition group-hover:scale-105"
                     />
 
                     <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10" />
@@ -189,7 +193,7 @@ export function CaseStudySection() {
             <div className="flex flex-1 flex-col gap-5">
 
               {/* Summary */}
-              <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
+              <div className="rounded-2xl border border-white/7 bg-white/3 p-5">
                 <div className="mb-2 flex flex-wrap items-center gap-2">
                   <span className="rounded bg-[rgba(232,255,71,0.1)] px-2 py-0.5 text-[10px] font-bold uppercase text-[#e8ff47]">
                     Active project
@@ -212,13 +216,13 @@ export function CaseStudySection() {
                   and market positioning rather than realised profit.
                 </p>
 
-                <div className="mt-4 grid grid-cols-3 gap-3 border-t border-white/[0.06] pt-4">
+                <div className="mt-4 grid grid-cols-3 gap-3 border-t border-white/6 pt-4">
                   {[
                     { label: "Purchase", value: "£6,500" },
                     { label: "Total cost", value: "~£8,100" },
                     { label: "Est. value", value: "~£10,000", accent: true },
                   ].map((s) => (
-                    <div key={s.label} className="rounded-xl bg-white/[0.03] p-3 text-center">
+                    <div key={s.label} className="rounded-xl bg-white/3 p-3 text-center">
                       <p className={`font-syne text-lg font-extrabold ${s.accent ? "text-[#e8ff47]" : "text-white"}`}>
                         {s.value}
                       </p>
@@ -229,7 +233,7 @@ export function CaseStudySection() {
               </div>
 
               {/* Timeline */}
-              <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
+              <div className="rounded-2xl border border-white/7 bg-white/3 p-5">
                 <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/35">
                   Process breakdown
                 </p>
@@ -241,7 +245,7 @@ export function CaseStudySection() {
                         {t.step}
                       </div>
                       {i < timeline.length - 1 && (
-                        <div className="my-1 w-px flex-1 bg-white/[0.06]" />
+                        <div className="my-1 w-px flex-1 bg-white/6" />
                       )}
                     </div>
 

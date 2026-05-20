@@ -1,4 +1,4 @@
-import HeadingBadge from "@/components/common";
+﻿import HeadingBadge from "@/components/common";
 
 const rows = [
   {
@@ -79,12 +79,12 @@ export function ComparisonSection() {
               className="grid grid-cols-1 gap-3 lg:grid-cols-[1fr_1fr_1fr]"
             >
               {/* Topic */}
-              <div className="flex items-center rounded-xl border border-white/[0.06] bg-white/[0.02] px-5 py-4">
+              <div className="flex items-center rounded-xl border border-white/6 bg-white/2 px-5 py-4">
                 <p className="text-sm font-semibold text-white/70">{row.topic}</p>
               </div>
 
               {/* Without */}
-              <div className="relative rounded-xl border border-red-500/10 bg-red-500/[0.04] px-5 py-4">
+              <div className="relative rounded-xl border border-red-500/10 bg-red-500/4 px-5 py-4">
                 <p className="mb-2 text-[10px] font-bold uppercase tracking-widest text-red-500/50 lg:hidden">
                   Without
                 </p>

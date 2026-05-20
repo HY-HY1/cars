@@ -1,6 +1,7 @@
 import "server-only";
 
 import type { Customer } from "@/types/database";
+import { isDevBypass } from "@/lib/dev";
 import { normalizeEmail } from "@/lib/customers";
 import { getStripe } from "@/lib/stripe";
 import { supabaseAdmin } from "@/lib/supabaseAdmin";
@@ -22,6 +23,10 @@ export async function resolveAccess(
   userId: string,
   email: string,
 ): Promise<AccessResult> {
+  if (isDevBypass()) {
+    return { hasAccess: true, source: "none", customer: null };
+  }
+
   const admin = supabaseAdmin();
   const normalized = normalizeEmail(email);
 

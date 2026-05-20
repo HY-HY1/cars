@@ -1,3 +1,5 @@
+﻿import Link from "next/link";
+
 import { AccessLocked } from "@/components/dashboard/access-locked";
 import {
   Accordion,
@@ -16,6 +18,7 @@ const modules = [
   {
     id: "m1",
     number: "01",
+    href: "/dashboard/playbook/1",
     title: "Welcome & Orientation",
     duration: "12 min",
     tag: "Start here",
@@ -29,6 +32,7 @@ const modules = [
   {
     id: "m2",
     number: "02",
+    href: "/dashboard/playbook/2",
     title: "Finding Undervalued Cars",
     duration: "34 min",
     tag: "Core",
@@ -43,6 +47,7 @@ const modules = [
   {
     id: "m3",
     number: "03",
+    href: "/dashboard/playbook/3",
     title: "Evaluating Before You Buy",
     duration: "28 min",
     tag: "Core",
@@ -57,6 +62,7 @@ const modules = [
   {
     id: "m4",
     number: "04",
+    href: "/dashboard/playbook/4",
     title: "Negotiation",
     duration: "22 min",
     tag: "Core",
@@ -71,6 +77,7 @@ const modules = [
   {
     id: "m5",
     number: "05",
+    href: "/dashboard/playbook/5",
     title: "Preparing the Car for Sale",
     duration: "18 min",
     tag: "Core",
@@ -84,6 +91,7 @@ const modules = [
   {
     id: "m6",
     number: "06",
+    href: "/dashboard/playbook/6",
     title: "Listing & Selling",
     duration: "24 min",
     tag: "Core",
@@ -98,6 +106,7 @@ const modules = [
   {
     id: "m7",
     number: "07",
+    href: "/dashboard/playbook/7",
     title: "Scaling Up",
     duration: "20 min",
     tag: "Advanced",
@@ -111,6 +120,7 @@ const modules = [
   {
     id: "m8",
     number: "08",
+    href: "/dashboard/playbook/8",
     title: "Legal & Compliance",
     duration: "16 min",
     tag: "Essential",
@@ -160,7 +170,7 @@ export default async function PlaybookPage() {
       </div>
 
       {/* Progress bar (static for now) */}
-      <div className="mb-8 rounded-2xl border border-white/[0.07] bg-white/3 p-4">
+      <div className="mb-8 rounded-2xl border border-white/7 bg-white/3 p-4">
         <div className="mb-2 flex items-center justify-between text-xs">
           <span className="text-white/40">Your progress</span>
           <span className="font-medium text-white/60">0 / {modules.length} modules</span>
@@ -176,7 +186,7 @@ export default async function PlaybookPage() {
           <AccordionItem
             key={mod.id}
             value={mod.id}
-            className="rounded-2xl border border-white/[0.07] bg-white/3 px-5 py-1 not-last:border-b-0"
+            className="rounded-2xl border border-white/7 bg-white/3 px-5 py-1 not-last:border-b-0"
           >
             <AccordionTrigger className="py-4 hover:no-underline">
               <div className="flex items-center gap-4 text-left">
@@ -200,7 +210,7 @@ export default async function PlaybookPage() {
             </AccordionTrigger>
 
             <AccordionContent>
-              <ul className="mb-2 space-y-2 border-t border-white/5 pt-4">
+              <ul className="mb-4 space-y-2 border-t border-white/5 pt-4">
                 {mod.lessons.map((lesson, i) => (
                   <li key={i} className="flex items-start gap-3 text-sm text-white/55">
                     <span className="mt-px text-xs font-bold tabular-nums text-white/20">
@@ -210,6 +220,12 @@ export default async function PlaybookPage() {
                   </li>
                 ))}
               </ul>
+              <Link
+                href={mod.href}
+                className="mb-3 inline-flex items-center gap-1.5 rounded-lg bg-[rgba(232,255,71,0.08)] px-3 py-1.5 text-xs font-semibold text-[#e8ff47] transition-colors hover:bg-[rgba(232,255,71,0.14)]"
+              >
+                Open module →
+              </Link>
             </AccordionContent>
           </AccordionItem>
         ))}

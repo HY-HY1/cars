@@ -1,5 +1,11 @@
 import { getBaseUrl } from "@/lib/env";
 
+// ── HTML escape ─────────────────────────────────────────────
+
+function esc(s: string): string {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
 // ── Shared wrapper ──────────────────────────────────────────
 
 function wrap(body: string): string {
@@ -34,7 +40,7 @@ function wrap(body: string): string {
 
 // ── 1. Personal thank-you ───────────────────────────────────
 
-export function thankYouHtml(email: string): string {
+export function thankYouHtml(_email: string): string {
   return wrap(`
     <tr>
       <td style="padding:40px 32px 0;">
@@ -72,7 +78,7 @@ export function thankYouHtml(email: string): string {
   `);
 }
 
-export function thankYouText(email: string): string {
+export function thankYouText(_email: string): string {
   return `Hey,
 
 Just a quick note from me — thank you for picking up the Car Flipping Playbook.
@@ -236,5 +242,156 @@ Log in with: ${email}
 ${RESOURCES_URL ? `\nAdditional resources: ${RESOURCES_URL}\n` : ""}
 Any issues, reply to this email.
 
+Harvey`;
+}
+
+// ── 3. Contact enquiry notification (internal) ──────────────
+
+type ContactData = {
+  name: string;
+  email: string;
+  subject: string | null;
+  message: string;
+};
+
+export function contactEnquiryHtml(data: ContactData): string {
+  const subjectRow = data.subject
+    ? `<tr>
+        <td style="padding:10px 16px;background:#f9f9f9;border-bottom:1px solid #e8e8e8;width:90px;vertical-align:top;">
+          <p style="margin:0;font-size:12px;font-weight:600;color:#666;">Subject</p>
+        </td>
+        <td style="padding:10px 16px;border-bottom:1px solid #e8e8e8;">
+          <p style="margin:0;font-size:14px;color:#333;">${esc(data.subject)}</p>
+        </td>
+      </tr>`
+    : "";
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body style="margin:0;padding:0;background:#f4f4f4;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f4f4;padding:32px 16px;">
+    <tr>
+      <td align="center">
+        <table width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#ffffff;border-radius:8px;overflow:hidden;">
+          <tr>
+            <td style="padding:24px 32px;background:#0a0a0a;">
+              <p style="margin:0;font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#e8ff47;">
+                Car Flipping Playbook
+              </p>
+              <p style="margin:4px 0 0;font-size:18px;font-weight:700;color:#ffffff;">
+                New contact enquiry
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:28px 32px;">
+              <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;border:1px solid #e8e8e8;border-radius:6px;overflow:hidden;">
+                <tr>
+                  <td style="padding:10px 16px;background:#f9f9f9;border-bottom:1px solid #e8e8e8;width:90px;vertical-align:top;">
+                    <p style="margin:0;font-size:12px;font-weight:600;color:#666;">Name</p>
+                  </td>
+                  <td style="padding:10px 16px;border-bottom:1px solid #e8e8e8;">
+                    <p style="margin:0;font-size:14px;color:#333;">${esc(data.name)}</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding:10px 16px;background:#f9f9f9;border-bottom:1px solid #e8e8e8;vertical-align:top;">
+                    <p style="margin:0;font-size:12px;font-weight:600;color:#666;">Email</p>
+                  </td>
+                  <td style="padding:10px 16px;border-bottom:1px solid #e8e8e8;">
+                    <p style="margin:0;font-size:14px;color:#333;">
+                      <a href="mailto:${esc(data.email)}" style="color:#2563eb;">${esc(data.email)}</a>
+                    </p>
+                  </td>
+                </tr>
+                ${subjectRow}
+              </table>
+
+              <p style="margin:0 0 8px;font-size:12px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:0.08em;">Message</p>
+              <div style="background:#f9f9f9;border:1px solid #e8e8e8;border-radius:6px;padding:16px 18px;">
+                <p style="margin:0;font-size:14px;color:#333;line-height:1.7;white-space:pre-wrap;">${esc(data.message)}</p>
+              </div>
+
+              <p style="margin:20px 0 0;font-size:13px;color:#999;">
+                Reply directly to this email to respond to ${esc(data.name)}.
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
+}
+
+export function contactEnquiryText(data: ContactData): string {
+  return `New contact enquiry — Car Flipping Playbook
+
+From: ${data.name} <${data.email}>
+${data.subject ? `Subject: ${data.subject}\n` : ""}
+Message:
+${data.message}
+
+---
+Reply directly to this email to respond.`;
+}
+
+// ── 4. Contact confirmation (to the sender) ─────────────────
+
+export function contactConfirmationHtml(data: ContactData): string {
+  return wrap(`
+    <tr>
+      <td style="padding:40px 32px 0;">
+        <p style="margin:0 0 24px;font-size:15px;color:#111;line-height:1.7;">Hi ${esc(data.name)},</p>
+        <p style="margin:0 0 16px;font-size:15px;color:#333;line-height:1.7;">
+          Thanks for getting in touch — I've received your message and will get back to you as
+          soon as possible, usually within a day or two.
+        </p>
+        <p style="margin:0 0 24px;font-size:15px;color:#333;line-height:1.7;">
+          For reference, here's what you sent:
+        </p>
+
+        <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px;border:1px solid #e8e8e8;border-radius:6px;overflow:hidden;">
+          ${data.subject ? `<tr>
+            <td style="padding:10px 18px;background:#f9f9f9;border-bottom:1px solid #e8e8e8;">
+              <p style="margin:0;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#666;">Subject</p>
+              <p style="margin:4px 0 0;font-size:14px;color:#333;">${esc(data.subject)}</p>
+            </td>
+          </tr>` : ""}
+          <tr>
+            <td style="padding:10px 18px;">
+              <p style="margin:0;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#666;">Message</p>
+              <p style="margin:4px 0 0;font-size:14px;color:#333;line-height:1.7;white-space:pre-wrap;">${esc(data.message)}</p>
+            </td>
+          </tr>
+        </table>
+
+        <p style="margin:0 0 8px;font-size:15px;color:#333;line-height:1.7;">
+          Speak soon,
+        </p>
+        <p style="margin:0 0 40px;font-size:15px;color:#111;font-weight:600;line-height:1.7;">
+          Harvey
+        </p>
+      </td>
+    </tr>
+  `);
+}
+
+export function contactConfirmationText(data: ContactData): string {
+  return `Hi ${data.name},
+
+Thanks for getting in touch — I've received your message and will get back to you as soon as possible, usually within a day or two.
+
+For reference, here's what you sent:
+${data.subject ? `\nSubject: ${data.subject}\n` : ""}
+Message:
+${data.message}
+
+Speak soon,
 Harvey`;
 }

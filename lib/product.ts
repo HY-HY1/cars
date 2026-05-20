@@ -1,3 +1,4 @@
+import { offer, discountLabel } from "@/lib/offer"
 import { getCheckoutProduct } from "@/lib/stripe-product"
 
 export async function getProductData() {
@@ -10,8 +11,8 @@ export async function getProductData() {
     currency: product.currency,
 
     // add marketing metadata here
-    compareAtPrice: 19700,
-    badge: "60% OFF",
+    compareAtPrice: offer.regularPricePence,
+    badge: discountLabel,
 
     features: [
       {

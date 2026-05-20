@@ -1,4 +1,4 @@
-type FlipCardProps = {
+﻿type FlipCardProps = {
   car: string
   bought: string
   sold: string
@@ -14,7 +14,7 @@ export function FlipCard({
   days,
 }: FlipCardProps) {
   return (
-    <div className="rounded-xl border border-white/[0.07] bg-white/[0.03] p-4 text-left">
+    <div className="rounded-xl border border-white/7 bg-white/3 p-4 text-left">
       <div className="mb-3 flex items-center justify-between">
         <span className="text-sm font-semibold text-white/90">{car}</span>
         <span className="rounded-full bg-[rgba(232,255,71,0.12)] px-2 py-0.5 text-[11px] font-bold text-[#e8ff47]">

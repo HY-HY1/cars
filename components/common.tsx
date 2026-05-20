@@ -1,7 +1,7 @@
 import React from 'react'
 
 export function HeadingBadge({
-  children, ...props
+  children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {

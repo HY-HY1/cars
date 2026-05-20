@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 
@@ -34,7 +34,7 @@ export function CheckoutSplash() {
       <div className="relative flex flex-col items-center gap-6 text-center">
         {/* spinner */}
         <div className="relative h-14 w-14">
-          <div className="absolute inset-0 rounded-full border-[2.5px] border-white/[0.07]" />
+          <div className="absolute inset-0 rounded-full border-[2.5px] border-white/7" />
           <div
             className="absolute inset-0 animate-spin rounded-full border-[2.5px] border-transparent border-t-[#e8ff47]"
             style={{ animationDuration: "650ms" }}
