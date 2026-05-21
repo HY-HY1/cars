@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 
 import { AccessLocked } from "@/components/dashboard/access-locked";
 import {
@@ -12,127 +12,208 @@ import { resolveAccess } from "@/lib/auth/resolve-access";
 
 export const metadata = { title: "Playbook — Dashboard" };
 
-// ── Static module content ───────────────────────────────────
+// ── Module data ─────────────────────────────────────────────
 
 const modules = [
   {
     id: "m1",
     number: "01",
     href: "/dashboard/playbook/1",
-    title: "Welcome & Orientation",
-    duration: "12 min",
+    title: "Welcome & Expectations",
+    duration: "15 min",
     tag: "Start here",
     lessons: [
-      "How this playbook is structured",
-      "What to expect in your first 30 days",
-      "Tools and accounts to set up before you begin",
-      "The mindset behind profitable flipping",
+      "What you can realistically earn flipping cars in the UK",
+      "How much capital you need to get started",
+      "The risks every beginner should understand",
+      "How much time it actually takes",
+      "The most common reasons beginners fail — and how to avoid them",
     ],
   },
   {
     id: "m2",
     number: "02",
     href: "/dashboard/playbook/2",
-    title: "Finding Undervalued Cars",
-    duration: "34 min",
+    title: "Understanding the Market",
+    duration: "20 min",
     tag: "Core",
     lessons: [
-      "Which platforms to use — AutoTrader, Facebook Marketplace, Gumtree",
-      "Search filters that surface deals others miss",
-      "Reading between the lines on listings",
-      "Price vs. value: spotting the gap",
-      "Building a daily sourcing routine",
+      "Which cars sell quickly and for profit",
+      "The best beginner-friendly flips by budget",
+      "Cars to avoid as a beginner",
+      "How mileage affects price and buyer psychology",
+      "Reading demand — what's moving and what's sitting",
     ],
   },
   {
     id: "m3",
     number: "03",
     href: "/dashboard/playbook/3",
-    title: "Evaluating Before You Buy",
-    duration: "28 min",
+    title: "Sourcing Deals",
+    duration: "25 min",
     tag: "Core",
     lessons: [
-      "The 40-point pre-purchase inspection walkthrough",
-      "Mechanical red flags and what they cost",
-      "Checking V5C, service history and MOT",
-      "HPI check and why it matters",
-      "Estimating repair costs accurately",
+      "Finding deals on Facebook Marketplace",
+      "Using AutoTrader and Gumtree effectively",
+      "How to use Copart and salvage auctions",
+      "Spotting undervalued listings before anyone else",
+      "Understanding seller psychology — urgency, motivation, flexibility",
     ],
   },
   {
     id: "m4",
     number: "04",
     href: "/dashboard/playbook/4",
-    title: "Negotiation",
-    duration: "22 min",
+    title: "Vehicle Evaluation",
+    duration: "30 min",
     tag: "Core",
     lessons: [
-      "How to open the negotiation without offending",
-      "Using inspection findings to justify a lower offer",
-      "Scripts for common seller responses",
-      "Walking away — and when to come back",
-      "Locking in the deal and staying firm",
+      "Reading MOT history — what the data tells you",
+      "VIN and HPI checks explained",
+      "CAT N and CAT S cars — risks and opportunities",
+      "Interpreting service history and spotting gaps",
+      "Understanding ownership history and what it means",
+      "Estimating repair costs before you buy",
     ],
   },
   {
     id: "m5",
     number: "05",
     href: "/dashboard/playbook/5",
-    title: "Preparing the Car for Sale",
-    duration: "18 min",
+    title: "Worked Flip Examples",
+    duration: "25 min",
     tag: "Core",
     lessons: [
-      "Full valet process — what to do yourself vs. pay for",
-      "Minor cosmetic repairs that pay for themselves",
-      "Photography: lighting, angles, and what buyers want to see",
-      "Writing a listing that gets enquiries",
+      "Full breakdown: VW Polo flip (budget buy)",
+      "Full breakdown: BMW 120d flip (mid-range)",
+      "Cost-by-cost analysis: what actually ate the margin",
+      "Calculating ROI on a real deal",
+      "Mistakes made and what they cost",
     ],
   },
   {
     id: "m6",
     number: "06",
     href: "/dashboard/playbook/6",
-    title: "Listing & Selling",
-    duration: "24 min",
+    title: "Negotiation",
+    duration: "20 min",
     tag: "Core",
     lessons: [
-      "Choosing the right platform for your car",
-      "Pricing strategy — starting high vs. realistic",
-      "Handling buyer enquiries and test drives",
-      "Safe transaction methods and paperwork",
-      "Handing over and completing the sale",
+      "How to message a seller without killing the deal",
+      "Building leverage before you make an offer",
+      "Pricing your offer — how low is too low?",
+      "Handling counter-offers and pushback",
+      "When and how to walk away cleanly",
+      "Scripts you can copy and adapt",
     ],
   },
   {
     id: "m7",
     number: "07",
     href: "/dashboard/playbook/7",
-    title: "Scaling Up",
-    duration: "20 min",
-    tag: "Advanced",
+    title: "Inspection System",
+    duration: "25 min",
+    tag: "Core",
     lessons: [
-      "Reinvesting profits to move into higher-margin cars",
-      "Running multiple cars at once",
-      "Building a reputation for repeat buyers",
-      "When to consider trading status",
+      "Mechanical checks every beginner must do",
+      "Bodywork inspection — what to look for and where",
+      "How to conduct a proper test drive",
+      "Red flags that mean walk away immediately",
+      "Using the printable inspection checklist on the day",
     ],
   },
   {
     id: "m8",
     number: "08",
     href: "/dashboard/playbook/8",
-    title: "Legal & Compliance",
-    duration: "16 min",
+    title: "Transport & Insurance",
+    duration: "15 min",
     tag: "Essential",
     lessons: [
-      "Private seller vs. trader — where the line is",
-      "V5C transfers and common mistakes",
-      "Insurance considerations between purchase and sale",
-      "HMRC and tax on profits",
-      "When you need to register as a trader",
+      "Temporary insurance options explained",
+      "Trade plates — what they are and when you need them",
+      "How to transport a car with no MOT legally",
+      "Getting the car home after purchase",
+    ],
+  },
+  {
+    id: "m9",
+    number: "09",
+    href: "/dashboard/playbook/9",
+    title: "Repairs & Connections",
+    duration: "20 min",
+    tag: "Essential",
+    lessons: [
+      "Finding a reliable local bodyshop",
+      "Working with mechanics — how to get fair quotes",
+      "Sourcing parts cheaper via eBay, scrapyards and dealers",
+      "Deciding what to fix yourself vs. outsource",
+      "Building your network of tradespeople over time",
+    ],
+  },
+  {
+    id: "m10",
+    number: "10",
+    href: "/dashboard/playbook/10",
+    title: "Adding Value",
+    duration: "20 min",
+    tag: "Core",
+    lessons: [
+      "Full valet process — what to do yourself and what to pay for",
+      "Cheap cosmetic fixes that increase sale price",
+      "Photography that sells cars faster",
+      "Presentation — what buyers notice before they speak to you",
+    ],
+  },
+  {
+    id: "m11",
+    number: "11",
+    href: "/dashboard/playbook/11",
+    title: "Selling Cars",
+    duration: "20 min",
+    tag: "Core",
+    lessons: [
+      "Writing a listing that gets enquiries",
+      "How to price your car for a fast sale",
+      "Understanding buyer psychology",
+      "Avoiding scams and time-wasters",
+      "Safe handover — paperwork, payment and V5C transfer",
+    ],
+  },
+  {
+    id: "m12",
+    number: "12",
+    href: "/dashboard/playbook/12",
+    title: "Accounting, Tax & Legal",
+    duration: "15 min",
+    tag: "Essential",
+    lessons: [
+      "Basic bookkeeping for car flippers",
+      "When HMRC starts taking notice — the rules",
+      "Private seller vs. trader — where the legal line is",
+      "Cash flow management between flips",
+      "Staying organised for tax time",
+    ],
+  },
+  {
+    id: "m13",
+    number: "13",
+    href: "/dashboard/playbook/13",
+    title: "First Flip Action Plan",
+    duration: "15 min",
+    tag: "Start here",
+    lessons: [
+      "Your exact action steps for the next 7 days",
+      "The beginner roadmap from zero to first offer",
+      "How to find your first deal using everything you've learned",
     ],
   },
 ];
+
+const totalMinutes = modules.reduce(
+  (acc, m) => acc + Number(m.duration.replace(" min", "")),
+  0,
+);
 
 const tagColor: Record<string, string> = {
   "Start here": "bg-[rgba(232,255,71,0.1)] text-[#e8ff47]",
@@ -150,7 +231,7 @@ export default async function PlaybookPage() {
   if (!hasAccess) return <AccessLocked />;
 
   return (
-    <div className="p-6 md:p-8 max-w-3xl">
+    <div className="max-w-3xl p-6 md:p-8">
       {/* Header */}
       <div className="mb-8">
         <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#e8ff47]">
@@ -160,12 +241,7 @@ export default async function PlaybookPage() {
           Car Flipping Playbook
         </h1>
         <p className="mt-1.5 text-sm text-white/40">
-          {modules.length} modules &middot;{" "}
-          {modules.reduce(
-            (acc, m) => acc + Number(m.duration.replace(" min", "")),
-            0,
-          )}{" "}
-          min total
+          {modules.length} modules &middot; {totalMinutes} min total
         </p>
       </div>
 
@@ -186,7 +262,7 @@ export default async function PlaybookPage() {
           <AccordionItem
             key={mod.id}
             value={mod.id}
-            className="rounded-2xl border border-white/7 bg-white/3 px-5 py-1 not-last:border-b-0"
+            className="rounded-2xl border border-white/7 bg-white/3 px-5 py-1"
           >
             <AccordionTrigger className="py-4 hover:no-underline">
               <div className="flex items-center gap-4 text-left">

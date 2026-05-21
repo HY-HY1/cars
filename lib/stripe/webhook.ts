@@ -74,9 +74,26 @@ export async function handlePaymentIntentSucceeded(
     customerId = byEmail?.id ?? null;
   }
 
+  // No existing customer — create one on the fly (e.g. payment via Stripe dashboard)
+  if (!customerId && email) {
+    const admin = supabaseAdmin();
+    const normalized = normalizeEmail(email);
+    const { data: created, error } = await admin
+      .from("customers")
+      .insert({
+        email: normalized,
+        stripe_customer_id: stripeCustomerId,
+        purchase_status: "active",
+      })
+      .select("id")
+      .single();
+    if (error) throw new Error(`Failed to create customer from webhook: ${error.message}`);
+    customerId = created.id;
+  }
+
   if (!customerId) {
     throw new Error(
-      "payment_intent.succeeded: missing supabase_customer_id and email fallback",
+      "payment_intent.succeeded: no email on payment intent — cannot resolve customer",
     );
   }
 

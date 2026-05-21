@@ -19,7 +19,7 @@ const pad = (n: number) => String(n).padStart(2, "0");
 function Segment({ value, label }: { value: number; label: string }) {
   return (
     <div className="flex flex-col items-center gap-0.5">
-      <span className="min-w-[30px] text-center text-xl font-medium leading-none tabular-nums text-[#e8ff47]">
+      <span suppressHydrationWarning className="min-w-[30px] text-center text-xl font-medium leading-none tabular-nums text-[#e8ff47]">
         {pad(value)}
       </span>
       <span className="text-[10px] uppercase tracking-widest text-white/35">
@@ -30,10 +30,11 @@ function Segment({ value, label }: { value: number; label: string }) {
 }
 
 export default function AnnouncementBar() {
-  const [time, setTime] = useState(getTimeUntilMidnight());
+  const [time, setTime] = useState(getTimeUntilMidnight);
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
+    setTime(getTimeUntilMidnight());
     const id = setInterval(() => setTime(getTimeUntilMidnight()), 1000);
     return () => clearInterval(id);
   }, []);

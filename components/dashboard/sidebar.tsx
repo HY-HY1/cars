@@ -7,6 +7,7 @@ import {
   BookOpen,
   ChevronRight,
   CreditCard,
+  FolderOpen,
   LayoutDashboard,
   LogOut,
   Shield,
@@ -43,14 +44,19 @@ const navItems = [
 ];
 
 const playbookModules = [
-  { id: "m1", label: "Welcome & Orientation",      href: "/dashboard/playbook/1" },
-  { id: "m2", label: "Finding Undervalued Cars",   href: "/dashboard/playbook/2" },
-  { id: "m3", label: "Evaluating Before You Buy",  href: "/dashboard/playbook/3" },
-  { id: "m4", label: "Negotiation",                href: "/dashboard/playbook/4" },
-  { id: "m5", label: "Preparing the Car for Sale", href: "/dashboard/playbook/5" },
-  { id: "m6", label: "Listing & Selling",          href: "/dashboard/playbook/6" },
-  { id: "m7", label: "Scaling Up",                 href: "/dashboard/playbook/7" },
-  { id: "m8", label: "Legal & Compliance",         href: "/dashboard/playbook/8" },
+  { id: "m1",  label: "Welcome & Expectations",    href: "/dashboard/playbook/1"  },
+  { id: "m2",  label: "Understanding the Market",  href: "/dashboard/playbook/2"  },
+  { id: "m3",  label: "Sourcing Deals",            href: "/dashboard/playbook/3"  },
+  { id: "m4",  label: "Vehicle Evaluation",        href: "/dashboard/playbook/4"  },
+  { id: "m5",  label: "Worked Flip Examples",      href: "/dashboard/playbook/5"  },
+  { id: "m6",  label: "Negotiation",               href: "/dashboard/playbook/6"  },
+  { id: "m7",  label: "Inspection System",         href: "/dashboard/playbook/7"  },
+  { id: "m8",  label: "Transport & Insurance",     href: "/dashboard/playbook/8"  },
+  { id: "m9",  label: "Repairs & Connections",     href: "/dashboard/playbook/9"  },
+  { id: "m10", label: "Adding Value",              href: "/dashboard/playbook/10" },
+  { id: "m11", label: "Selling Cars",              href: "/dashboard/playbook/11" },
+  { id: "m12", label: "Accounting, Tax & Legal",   href: "/dashboard/playbook/12" },
+  { id: "m13", label: "First Flip Action Plan",    href: "/dashboard/playbook/13" },
 ];
 
 export function AppSidebar({ email, name }: { email: string; name: string | null }) {
@@ -58,6 +64,9 @@ export function AppSidebar({ email, name }: { email: string; name: string | null
   const displayName = name ?? email.split("@")[0];
   const [playbookOpen, setPlaybookOpen] = useState(
     pathname.startsWith("/dashboard/playbook"),
+  );
+  const [resourcesOpen, setResourcesOpen] = useState(
+    pathname.startsWith("/dashboard/resources"),
   );
 
   return (
@@ -117,11 +126,89 @@ export function AppSidebar({ email, name }: { email: string; name: string | null
                 </CollapsibleTrigger>
                 <CollapsibleContent>
                   <SidebarMenuSub>
+                    <SidebarMenuSubItem>
+                      <SidebarMenuSubButton
+                        render={<Link href="/dashboard/playbook" />}
+                        isActive={pathname === "/dashboard/playbook"}
+                      >
+                        <span className="text-white/40">All modules</span>
+                      </SidebarMenuSubButton>
+                    </SidebarMenuSubItem>
                     {playbookModules.map(({ id, label, href }) => (
                       <SidebarMenuSubItem key={id}>
                         <SidebarMenuSubButton
                           render={<Link href={href} />}
                           isActive={pathname === href}
+                        >
+                          <span>{label}</span>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                    ))}
+                  </SidebarMenuSub>
+                </CollapsibleContent>
+              </SidebarMenuItem>
+            </Collapsible>
+          </SidebarMenu>
+        </SidebarGroup>
+
+        <SidebarGroup>
+          <SidebarGroupLabel>Resources</SidebarGroupLabel>
+          <SidebarMenu>
+            <Collapsible open={resourcesOpen} onOpenChange={setResourcesOpen}>
+              <SidebarMenuItem>
+                <CollapsibleTrigger
+                  render={
+                    <SidebarMenuButton
+                      isActive={!resourcesOpen && pathname.startsWith("/dashboard/resources")}
+                      tooltip="Resources"
+                    />
+                  }
+                >
+                  <FolderOpen />
+                  <span>Resources</span>
+                  <ChevronRight
+                    className={cn(
+                      "ml-auto size-4 shrink-0 transition-transform duration-200",
+                      resourcesOpen && "rotate-90",
+                    )}
+                  />
+                </CollapsibleTrigger>
+                <CollapsibleContent>
+                  <SidebarMenuSub>
+                    <SidebarMenuSubItem>
+                      <SidebarMenuSubButton
+                        render={<Link href="/dashboard/resources" />}
+                        isActive={pathname === "/dashboard/resources"}
+                      >
+                        <span className="text-white/40">All resources</span>
+                      </SidebarMenuSubButton>
+                    </SidebarMenuSubItem>
+                    <SidebarMenuSubItem>
+                      <SidebarMenuSubButton
+                        render={<Link href="/dashboard/resources/tools" />}
+                        isActive={pathname === "/dashboard/resources/tools"}
+                      >
+                        <span>Tools & Resources</span>
+                      </SidebarMenuSubButton>
+                    </SidebarMenuSubItem>
+                    <SidebarMenuSubItem>
+                      <SidebarMenuSubButton
+                        render={<Link href="/dashboard/resources/important-links" />}
+                        isActive={pathname === "/dashboard/resources/important-links"}
+                      >
+                        <span>Important Links</span>
+                      </SidebarMenuSubButton>
+                    </SidebarMenuSubItem>
+                    {[
+                      { id: "checklists", label: "Checklists" },
+                      { id: "calculators", label: "Calculators" },
+                      { id: "scripts", label: "Scripts & Templates" },
+                      { id: "guides", label: "Guides & References" },
+                    ].map(({ id, label }) => (
+                      <SidebarMenuSubItem key={id}>
+                        <SidebarMenuSubButton
+                          render={<Link href={`/dashboard/resources#${id}`} />}
+                          isActive={false}
                         >
                           <span>{label}</span>
                         </SidebarMenuSubButton>

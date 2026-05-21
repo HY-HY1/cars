@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { FaDiscord, FaInstagram, FaTiktok } from "react-icons/fa";
 
@@ -32,13 +31,9 @@ export function Footer7() {
           {/* Brand */}
           <div className="max-w-xs">
             <Link href="/" className="mb-5 flex items-center gap-3">
-              <Image
-                src="/logo.png"
-                alt="Ascend Autos logo"
-                width={36}
-                height={36}
-                className="size-9 rounded-full object-cover"
-              />
+              <div className="flex size-9 items-center justify-center rounded-full bg-[#e8ff47] text-xs font-black text-black">
+                AA
+              </div>
               <span className="text-xl font-bold tracking-tight">Ascend Autos</span>
             </Link>
                         <div className="mb-4 flex gap-4">

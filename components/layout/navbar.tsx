@@ -5,8 +5,8 @@ import Link from 'next/link'
 
 const navLinks = [
   { label: 'Home', href: '/' },
-  { label: 'Digital Playbook', href: '/dashboard' },
-  { label: 'Mentoring Group', href: '/mentoring' },
+  { label: 'Digital Playbook', href: '/product' },
+  { label: "Members' Area", href: '/dashboard' },
 ]
 
 const Navbar = () => {

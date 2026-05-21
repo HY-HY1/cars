@@ -6,7 +6,8 @@ create table if not exists public.customers (
   created_at timestamptz not null default now(),
   auth_user_id uuid unique references auth.users (id) on delete set null,
   has_account boolean not null default false,
-  purchase_status text
+  purchase_status text,
+  welcome_email_sent_at timestamptz
 );
 
 create index if not exists customers_email_idx on public.customers (email);
