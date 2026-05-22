@@ -41,7 +41,7 @@ const trustSignals = [
 export default async function CheckoutPage() {
   const product = await getCheckoutProduct();
   const publishableKey = getStripePublishableKey();
-  const returnUrl = `${getBaseUrl()}/checkout/success`;
+  const returnUrl = `${getBaseUrl()}/success`;
 
   const salePrice = formatPrice(product.amountCents, product.currency);
   const regularPrice = formatPrice(offer.regularPricePence, product.currency);
@@ -75,18 +75,18 @@ export default async function CheckoutPage() {
 
             <div className="flex items-end gap-2.5">
               <span className="text-xs text-zinc-600 line-through">{regularPrice}</span>
-              <span className="text-3xl font-extrabold tracking-tight text-white">{salePrice}</span>
+              <span className="font-syne text-3xl font-extrabold tracking-tight text-white">{salePrice}</span>
             </div>
 
             <div className="flex items-center gap-2 rounded-lg border border-[rgba(232,255,71,0.12)] bg-[rgba(232,255,71,0.06)] px-3 py-2">
               <span className="text-sm">🎉</span>
               <span className="text-xs text-[#e8ff47]">
-                You&apos;re saving <strong>£{savings}</strong> with today&apos;s price
+                You&apos;re saving <strong> £{savings} </strong> with today&apos;s price
               </span>
             </div>
           </div>
 
-          {/* Countdown */}
+          {/* Countdown */} 
           <CheckoutCountdown regularPrice={regularPrice} />
 
           {/* What's included */}
@@ -119,7 +119,7 @@ export default async function CheckoutPage() {
         <div className="flex-1">
           <Card className="border-zinc-800 bg-zinc-900">
             <CardHeader className="pb-4">
-              <CardTitle className="text-lg text-zinc-50">Complete your order</CardTitle>
+              <CardTitle className="font-syne text-lg text-zinc-50">Complete your order</CardTitle>
               <CardDescription className="text-zinc-400">
                 One-time payment · No subscription · No hidden fees
               </CardDescription>

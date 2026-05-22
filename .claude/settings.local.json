@@ -21,7 +21,8 @@
       "Bash(Select-Object FullName)",
       "Bash(Get-Content \"d:\\\\cars\\\\website\\\\.env.example\")",
       "Bash(node -e \"require\\('react-icons/fa'\\); console.log\\('ok'\\)\")",
-      "Bash(node -e \"const {FaTiktok, FaDiscord, FaInstagram} = require\\('react-icons/fa'\\); console.log\\('fa:', !!FaTiktok, !!FaDiscord, !!FaInstagram\\)\")"
+      "Bash(node -e \"const {FaTiktok, FaDiscord, FaInstagram} = require\\('react-icons/fa'\\); console.log\\('fa:', !!FaTiktok, !!FaDiscord, !!FaInstagram\\)\")",
+      "WebFetch(domain:chiseled-mosquito-694.notion.site)"
     ]
   }
 }

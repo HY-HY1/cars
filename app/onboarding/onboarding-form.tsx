@@ -314,7 +314,6 @@ export function OnboardingForm({
   return (
     <div
       className="flex min-h-screen flex-col items-center justify-center bg-[#0a0a0a] px-6 py-16 text-white"
-      style={{ fontFamily: "'DM Sans', sans-serif" }}
     >
       {/* Glow */}
       <div className="pointer-events-none fixed inset-0 flex items-center justify-center">

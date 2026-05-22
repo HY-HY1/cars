@@ -12,7 +12,7 @@ const steps = [
     n: "02",
     icon: "📧",
     title: "Check your inbox",
-    desc: "Two emails land immediately: a personal note from Harvey, and your access link with everything included.",
+    desc: "Two emails land immediately: with your access link with everything included. Just Log In",
     detail: "Arrives within 60 seconds",
   },
   {

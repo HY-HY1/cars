@@ -36,3 +36,15 @@ export function getStripeWebhookSecret(): string {
     process.env.STRIPE_WEBHOOK_SECRET,
   );
 }
+
+export function getCronSecret(): string {
+  return required("CRON_SECRET", process.env.CRON_SECRET);
+}
+
+export function getResendAudienceId(type: "subscribers" | "customers"): string {
+  const name =
+    type === "subscribers"
+      ? "RESEND_AUDIENCE_SUBSCRIBERS_ID"
+      : "RESEND_AUDIENCE_CUSTOMERS_ID";
+  return required(name, process.env[name]);
+}

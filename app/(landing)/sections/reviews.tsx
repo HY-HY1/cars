@@ -223,7 +223,14 @@ export default function TestimonialsSection() {
       <div className="mx-auto max-w-5xl">
         <Carousel
           setApi={setApi}
-          opts={{ align: "start", slidesToScroll: 3 }}
+          opts={{
+            align: "start",
+            slidesToScroll: 3,
+            breakpoints: {
+              "(max-width: 1023px)": { slidesToScroll: 2 },
+              "(max-width: 639px)":  { slidesToScroll: 1 },
+            },
+          }}
           className="w-full cursor-grab active:cursor-grabbing"
         >
           <CarouselContent className="-ml-4">

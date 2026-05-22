@@ -106,10 +106,7 @@ export default async function ProductPage() {
   const savings = Math.round((offer.regularPricePence - product.amountCents) / 100);
 
   return (
-    <div
-      className="min-h-screen bg-[#0a0a0a] text-white"
-      style={{ fontFamily: "'DM Sans', sans-serif" }}
-    >
+    <div className="min-h-screen bg-[#0a0a0a] text-white">
       {/* ── Breadcrumb ──────────────────────────────────────── */}
       <div className="border-b border-white/6 bg-[#0d0d0d]">
         <div className="mx-auto flex max-w-7xl items-center gap-2 px-6 py-3 text-xs text-white/35">

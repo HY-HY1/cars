@@ -2,6 +2,7 @@ import "server-only";
 
 import { supabaseAdmin } from "@/lib/supabaseAdmin";
 import { getStripe } from "@/lib/stripe";
+import { addSubscriber } from "@/lib/resend/contacts";
 import type { Customer } from "@/types/database";
 
 export function normalizeEmail(email: string): string {
@@ -69,6 +70,10 @@ export async function getOrCreateCustomerByEmail(email: string): Promise<Custome
       }
     } else {
       customer = data;
+      // New customer — sync to Resend subscribers audience
+      addSubscriber(normalized).catch((err) =>
+        console.error("[resend] addSubscriber failed:", err),
+      );
     }
   }
 

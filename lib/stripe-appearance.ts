@@ -8,7 +8,7 @@ export const stripeAppearance: Appearance = {
     colorBackground: "#09090b",
     colorText: "#fafafa",
     colorDanger: "#f87171",
-    fontFamily: 'Geist, system-ui, sans-serif',
+    fontFamily: "'Poppins', system-ui, sans-serif",
     fontSizeBase: "14px",
     spacingUnit: "4px",
     borderRadius: "12px",

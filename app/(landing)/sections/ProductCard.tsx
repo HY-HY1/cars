@@ -193,7 +193,7 @@ function ProductDetails({
   onCheckout,
 }: ProductDetailsProps) {
   return (
-    <div className="animate-in fade-in slide-in-from-left-4 transition-all duration-300">
+    <div className="animate-in fade-in slide-in-from-left-4 transition-all  duration-300">
       <div className="mb-8">
         <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/30">
           What you get
@@ -270,10 +270,7 @@ export default function ProductCard({
     (product.compareAtPrice - product.price) / 100
 
   return (
-    <section
-      className="bg-[#0d0d0d] px-6 py-24 text-white"
-      style={{ fontFamily: "'DM Sans', sans-serif" }}
-    >
+    <section className="bg-[#0d0d0d] px-6 py-24 text-white">
 
 
       {/* Header */}

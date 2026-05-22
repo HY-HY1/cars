@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 
 import { Confetti } from "@/components/ui/confetti";
 import { getCheckoutProduct } from "@/lib/stripe-product";
@@ -15,7 +15,7 @@ export const metadata = {
   title: "Order confirmed",
 };
 
-export default async function CheckoutSuccessPage({ searchParams }: SuccessPageProps) {
+export default async function SuccessPage({ searchParams }: SuccessPageProps) {
   const product = await getCheckoutProduct();
   const params = await searchParams;
   const paymentIntentId = params.payment_intent;
@@ -69,9 +69,7 @@ export default async function CheckoutSuccessPage({ searchParams }: SuccessPageP
   }
 
   return (
-    <div
-      className="flex min-h-screen flex-col items-center justify-center bg-[#0a0a0a] px-6 py-16 text-white"
-    >
+    <div className="flex min-h-screen flex-col items-center justify-center bg-[#0a0a0a] px-6 py-16 text-white">
       {status === "succeeded" && <Confetti />}
 
       {/* Glow */}

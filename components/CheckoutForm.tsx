@@ -104,6 +104,12 @@ export function CheckoutForm({ publishableKey, returnUrl }: CheckoutFormProps) {
       options={{
         clientSecret,
         appearance: stripeAppearance,
+        fonts: [
+          {
+            cssSrc:
+              "https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap",
+          },
+        ],
       }}
     >
       <PaymentStep

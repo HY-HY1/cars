@@ -33,14 +33,14 @@ export function Hero() {
           transform: "translateY(-50%) rotate(-12deg)",
         }}
       >
-        <Image
+        {/* <Image
           src="/120d/after.JPG"
           alt=""
           width={340}
           height={255}
           className="w-[340px] opacity-[0.13] rounded-xl cursor-pointer mix-blend-luminosity"
           style={{ filter: "grayscale(30%)" }}
-        />
+        /> */}
       </div>
 
       {/* Floating car — right */}
@@ -52,14 +52,14 @@ export function Hero() {
           transform: "translateY(-50%) rotate(12deg)",
         }}
       >
-        <Image
+        {/* <Image
           src="/120d/before.jpg"
           alt=""
           width={340}
           height={255}
           className="w-[340px] opacity-[0.13] rounded-xl mix-blend-luminosity"
           style={{ filter: "grayscale(30%)", transform: "scaleX(-1)" }}
-        />
+        /> */}
       </div>
 
       <div className="relative z-10 max-w-4xl">

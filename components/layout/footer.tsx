@@ -34,7 +34,7 @@ export function Footer7() {
               <div className="flex size-9 items-center justify-center rounded-full bg-[#e8ff47] text-xs font-black text-black">
                 AA
               </div>
-              <span className="text-xl font-bold tracking-tight">Ascend Autos</span>
+              {/* <span className="text-xl font-bold tracking-tight">Ascend Autos</span> */}
             </Link>
                         <div className="mb-4 flex gap-4">
               <a href="https://discord.gg/XjTkKqzg3" target="_blank" rel="noopener noreferrer" aria-label="Discord" className="text-zinc-500 transition hover:text-white">
@@ -80,7 +80,7 @@ export function Footer7() {
 
         {/* Bottom bar */}
         <div className="mt-12 flex flex-col gap-4 border-t border-zinc-800 pt-8 text-xs text-zinc-600 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Ascendancy Auto. All rights reserved.</p>
+          {/* <p>© {new Date().getFullYear()} Ascendancy Auto. All rights reserved.</p> */}
           <div className="flex gap-5">
             <a href="/terms" className="transition hover:text-zinc-400">Terms</a>
             <a href="/privacy" className="transition hover:text-zinc-400">Privacy</a>

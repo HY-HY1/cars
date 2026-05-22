@@ -134,12 +134,13 @@ export function AppSidebar({ email, name }: { email: string; name: string | null
                         <span className="text-white/40">All modules</span>
                       </SidebarMenuSubButton>
                     </SidebarMenuSubItem>
-                    {playbookModules.map(({ id, label, href }) => (
+                    {playbookModules.map(({ id, label, href }, index) => (
                       <SidebarMenuSubItem key={id}>
                         <SidebarMenuSubButton
                           render={<Link href={href} />}
                           isActive={pathname === href}
                         >
+                          <span className="w-5 shrink-0 text-white/40">{String(index + 1).padStart(2, "0")}</span>
                           <span>{label}</span>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
@@ -193,10 +194,10 @@ export function AppSidebar({ email, name }: { email: string; name: string | null
                     </SidebarMenuSubItem>
                     <SidebarMenuSubItem>
                       <SidebarMenuSubButton
-                        render={<Link href="/dashboard/resources/important-links" />}
-                        isActive={pathname === "/dashboard/resources/important-links"}
+                        render={<Link href="/dashboard/resources/deal-sourcing-tracker" />}
+                        isActive={pathname === "/dashboard/resources/deal-sourcing-tracker"}
                       >
-                        <span>Important Links</span>
+                        <span>Deal Sourcing Tracker</span>
                       </SidebarMenuSubButton>
                     </SidebarMenuSubItem>
                     {[

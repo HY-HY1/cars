@@ -45,7 +45,7 @@ export function CheckoutSplash() {
         </div>
 
         <div>
-          <p className="text-base font-semibold text-white/80">
+          <p className="font-syne text-base font-semibold text-white/80">
             Car Flipping Playbook
           </p>
           <p className="mt-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#e8ff47]">

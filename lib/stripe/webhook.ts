@@ -8,6 +8,7 @@ import {
   normalizeEmail,
 } from "@/lib/customers";
 import { sendPurchaseEmails } from "@/lib/email/send";
+import { addCustomer } from "@/lib/resend/contacts";
 import { supabaseAdmin } from "@/lib/supabaseAdmin";
 
 async function activateCustomerPurchase(params: {
@@ -102,6 +103,12 @@ export async function handlePaymentIntentSucceeded(
     stripeCustomerId,
     email,
   });
+
+  if (emailAddress) {
+    addCustomer(emailAddress).catch((err) =>
+      console.error("[resend] addCustomer failed:", err),
+    );
+  }
 
   if (alreadySentEmail) {
     console.log("[webhook] welcome emails already sent for", emailAddress, "— skipping");
